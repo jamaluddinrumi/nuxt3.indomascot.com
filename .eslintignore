@@ -1,0 +1,21 @@
+# Default Ignore
+**/.git
+**/.svn
+**/.hg
+**/node_modules
+
+**/.git
+**/.svn
+**/.hg
+
+# Ignore artifacts:
+build
+coverage
+
+dist
+public
+dev-dist
+
+# ignore generate imports
+auto-imports.d.ts
+components.d.ts
