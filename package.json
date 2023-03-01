@@ -2,12 +2,36 @@
   "private": true,
   "scripts": {
     "build": "nuxt build",
-    "dev": "NODE_TLS_REJECT_UNAUTHORIZED=0 nuxt dev --https --ssl-cert ../127.0.0.1+7.pem --ssl-key ../127.0.0.1+7-key.pem",
+    "dev": "NODE_TLS_REJECT_UNAUTHORIZED=0 nuxt dev --port 3007 --https --ssl-cert ../127.0.0.1+7.pem --ssl-key ../127.0.0.1+7-key.pem",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare"
   },
   "devDependencies": {
-    "nuxt": "^3.2.3"
+    "@fortawesome/fontawesome-svg-core": "^6.3.0",
+    "@fortawesome/free-brands-svg-icons": "^6.3.0",
+    "@fortawesome/free-regular-svg-icons": "^6.3.0",
+    "@fortawesome/free-solid-svg-icons": "^6.3.0",
+    "@fortawesome/vue-fontawesome": "^3.0.3",
+    "@nuxt/eslint-config": "^0.1.1",
+    "@storyblok/nuxt": "^5.1.0",
+    "eslint": "^8.35.0",
+    "eslint-config-prettier": "^8.6.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-tailwindcss": "^3.10.0",
+    "eslint-plugin-vue": "^9.9.0",
+    "nuxt": "^3.2.3",
+    "pnpm": "^7.28.0",
+    "prettier": "^2.8.4",
+    "prettier-plugin-tailwindcss": "^0.2.3",
+    "sass": "^1.58.3",
+    "slugify": "^1.6.5",
+    "stylelint": "^14.16.1",
+    "stylelint-config-prettier": "^9.0.5",
+    "swiper": "^9.1.0",
+    "tailwindcss": "^3.2.7",
+    "typescript": "^4.9.5",
+    "vue-eslint-parser": "^9.1.0",
+    "vue3-moveable": "^0.18.1"
   }
 }
