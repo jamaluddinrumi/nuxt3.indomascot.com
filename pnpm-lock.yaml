@@ -28,7 +28,6 @@ specifiers:
   eslint-plugin-vue: ^9.9.0
   nuxt: ^3.2.3
   nuxt-seo-kit: ^1.3.1
-  nuxt-simple-sitemap: ^1.0.7
   pnpm: ^7.28.0
   prettier: ^2.8.4
   prettier-plugin-tailwindcss: ^0.2.3
@@ -70,7 +69,6 @@ devDependencies:
   eslint-plugin-vue: 9.9.0_eslint@8.35.0
   nuxt: 3.2.3_eqcem5h5avaabzbmioq4qmzqdm
   nuxt-seo-kit: 1.3.1
-  nuxt-simple-sitemap: 1.0.7
   pnpm: 7.28.0
   prettier: 2.8.4
   prettier-plugin-tailwindcss: 0.2.3_prettier@2.8.4
