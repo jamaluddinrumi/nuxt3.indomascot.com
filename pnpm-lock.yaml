@@ -11,7 +11,7 @@ specifiers:
   '@nuxtjs/i18n': 8.0.0-beta.10
   '@nuxtjs/robots': ^3.0.0
   '@nuxtjs/tailwindcss': ^6.4.1
-  '@storyblok/nuxt': ^5.2.0
+  '@storyblok/nuxt': ^5.3.0
   '@tailwindcss/line-clamp': ^0.4.2
   '@tailwindcss/typography': ^0.5.9
   '@vueuse/core': ^9.13.0
@@ -51,7 +51,7 @@ devDependencies:
   '@nuxtjs/html-validator': 1.2.3
   '@nuxtjs/i18n': 8.0.0-beta.10
   '@nuxtjs/robots': 3.0.0
-  '@storyblok/nuxt': 5.2.0
+  '@storyblok/nuxt': 5.3.0
   '@tailwindcss/line-clamp': 0.4.2_tailwindcss@3.2.7
   '@tailwindcss/typography': 0.5.9_tailwindcss@3.2.7
   '@vueuse/core': 9.13.0
@@ -2114,8 +2114,8 @@ packages:
       storyblok-js-client: 5.5.0
     dev: true
 
-  /@storyblok/nuxt/5.2.0:
-    resolution: {integrity: sha512-Z3rHoMyCvKuuacD3MrRj3wkjCGkoljSicg21smmU6VG2xaqNQXjRlkXukvkK+0oWtabyFXxbQTUeMUYwe6JIdg==}
+  /@storyblok/nuxt/5.3.0:
+    resolution: {integrity: sha512-355QofnjmEiurl2py0wPXUJKK77Sl73NAr8uHjQ79+Q8XE8Ytq5b658OikJRXsSWiz+hjZJW5+AWkwOYwusi+g==}
     dependencies:
       '@nuxt/kit': 3.2.3
       '@storyblok/vue': 7.0.0
