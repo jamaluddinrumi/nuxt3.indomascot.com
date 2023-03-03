@@ -7,18 +7,16 @@ export default defineNuxtConfig({
   css: ["@/assets/css/style.scss"],
 
   modules: [
-    [
-      "@storyblok/nuxt",
-      {
-        accessToken: process.env.PUBLIC_STORYBLOK_API_KEY,
-        cacheProvider: "memory",
-      },
-    ],
+    "@storyblok/nuxt",
     "@nuxtjs/tailwindcss",
     "@nuxtjs/i18n",
     "@nuxtjs/device",
     "nuxt-icon",
   ],
+
+  storyblok: {
+    accessToken: process.env.STORYBLOK_API_KEY,
+  },
 
   device: {
     refreshOnResize: true,
