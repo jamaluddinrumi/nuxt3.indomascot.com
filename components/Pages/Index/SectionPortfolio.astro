@@ -1,0 +1,14 @@
+---
+import { useStoryblokApi } from "@storyblok/astro";
+import StoryblokComponent from "@storyblok/astro/StoryblokComponent.astro";
+ 
+const storyblokApi = useStoryblokApi();
+const { data } = await storyblokApi.get("cdn/stories/halaman-depan", {
+  version: "draft",
+});
+ 
+const story = data.story;
+console.log(story.content);
+
+---
+<pre>{story.content}</pre>
