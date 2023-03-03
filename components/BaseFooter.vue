@@ -1,14 +1,7 @@
 <script setup lang="ts">
-import FooterApps from "@components/FooterApps.vue";
-import FooterNav from "@components/FooterNav.vue";
 import { useI18n } from "vue-i18n";
 
-const waNo = import.meta.env.PUBLIC_WA_NO;
-const waUrl = import.meta.env.PUBLIC_WA_URL;
-const emailAddress = import.meta.env.PUBLIC_EMAIL_ADDRESS;
-const igUrl = import.meta.env.PUBLIC_IG_URL;
-const youtubeUrl = import.meta.env.PUBLIC_YOUTUBE_URL;
-const googleBusinessUrl = import.meta.env.PUBLIC_GOOGLE_BUSINESS_URL;
+const appConfig = useAppConfig();
 
 const { t } = useI18n();
 </script>
@@ -32,22 +25,18 @@ const { t } = useI18n();
           }}, Bandung, <br />{{ t("address.westJava") }} 40191
         </address>
         <div class="josefin-sans mb-0 mt-2 leading-3">
-          <font-awesome-icon
-            class="mr-1"
-            :icon="['fas', 'map-marker-alt']"
-            aria-hidden="true"
-          />
-          <a :href="googleBusinessUrl" target="_blank" rel="noopener">
+          <Icon class="mr-1 mb-1.5" name="ion:ios-pin" aria-hidden="true" />
+          <a :href="appConfig.googleBusinessUrl" target="_blank" rel="noopener">
             <span class="bangers">INDOMASCOT</span>
           </a>
         </div>
         <p class="josefin-sans mt-2 italic underline">
-          <a :href="googleBusinessUrl" target="_blank" rel="noopener">
+          <a :href="appConfig.googleBusinessUrl" target="_blank" rel="noopener">
             <span class="font-sans text-xs">
               {{ t("seeAtGoogleMaps") }}
-              <font-awesome-icon
-                :icon="['fas', 'external-link-alt']"
-                class="ml-0.5"
+              <Icon
+                name="ion:ios-link"
+                class="ml-0.5 mb-0.5"
                 aria-hidden="true"
               />
             </span>
@@ -63,49 +52,46 @@ const { t } = useI18n();
         <div class="mx-auto w-fit">
           <ul class="fa-ul w-fit">
             <li class="mb-3 w-fit">
-              <font-awesome-layers class="fa-fw fa-li mr-1 !h-6">
-                <font-awesome-icon
-                  class=""
-                  :icon="['fab', 'whatsapp']"
-                  aria-hidden="true"
-                />
-              </font-awesome-layers>
+              <Icon
+                class="mr-2 mb-0.5"
+                name="ion:logo-whatsapp"
+                aria-hidden="true"
+              />
+
               <a
                 class="josefin-sans"
-                :href="waUrl"
+                :href="appConfig.waUrl"
                 target="_blank"
                 rel="noopener noreferrer"
                 alt="kontak whatsapp"
-                >{{ waNo }}</a
+                >{{ appConfig.waNo }}</a
               >
             </li>
             <li class="mb-3 w-fit">
-              <font-awesome-layers class="fa-fw fa-li mr-1 !h-6">
-                <font-awesome-icon
-                  class=""
-                  :icon="['fas', 'envelope']"
-                  aria-hidden="true"
-                />
-              </font-awesome-layers>
+              <Icon
+                class="mr-2 mb-0.5"
+                name="ion:ios-email-outline"
+                aria-hidden="true"
+              />
+
               <a
                 class="josefin-sans"
-                :href="`mailto:${emailAddress}`"
+                :href="`mailto:${appConfig.emailAddress}`"
                 target="_blank"
                 rel="noopener noreferrer"
                 alt="kontak email"
-                >{{ emailAddress }}</a
+                >{{ appConfig.emailAddress }}</a
               >
             </li>
             <li class="mb-3 w-fit">
-              <font-awesome-layers class="fa-fw fa-li mr-1 !h-6">
-                <font-awesome-icon
-                  class=""
-                  :icon="['fab', 'instagram']"
-                  aria-hidden="true"
-                />
-              </font-awesome-layers>
+              <Icon
+                class="mr-2 mb-0.5"
+                name="ion:logo-instagram"
+                aria-hidden="true"
+              />
+
               <a
-                :href="igUrl"
+                :href="appConfig.igUrl"
                 target="_blank"
                 rel="noopener noreferrer"
                 alt="instagram"
@@ -114,15 +100,14 @@ const { t } = useI18n();
               </a>
             </li>
             <li class="mb-3 w-fit">
-              <font-awesome-layers class="fa-fw fa-li mr-1 !h-6">
-                <font-awesome-icon
-                  class=""
-                  :icon="['fab', 'youtube']"
-                  aria-hidden="true"
-                />
-              </font-awesome-layers>
+              <Icon
+                class="mr-2 mb-0.5"
+                name="ion:social-youtube-outline"
+                aria-hidden="true"
+              />
+
               <a
-                :href="youtubeUrl"
+                :href="appConfig.youtubeUrl"
                 target="_blank"
                 rel="noopener noreferrer"
                 alt="channel youtube"

@@ -1,26 +1,17 @@
 <script setup lang="ts">
-import { computed, ref } from "vue";
-import IconIndomascot from "@components/Icon/IndomascotLogo.vue";
-import { mainMenu, isDark } from "@src/states";
-import { useStore } from "@nanostores/vue";
-import { menus } from "@src/states";
+import { useDark } from "@vueuse/core";
 
-const homeLink = ref(menus.get().find((item) => item.text === "homepage"));
-const homeLinkHref = homeLink.value.href;
-
-const $mainMenu = useStore(mainMenu);
-
-const $isDark = useStore(isDark);
+const isDark = useDark();
 
 function openMainMenu() {
-  if (!mainMenu.get()) mainMenu.set(true);
+  // if (!mainMenu.get()) mainMenu.set(true);
 }
 
 useHead({
   meta: [
     {
       name: "theme-color",
-      content: computed(() => ($isDark.value ? "#13111C" : "#8532CE")),
+      content: computed(() => (isDark.value ? "#13111C" : "#8532CE")),
     },
   ],
 });
@@ -35,15 +26,14 @@ useHead({
       class="supports-backdrop-blur:bg-white/60 navbar h-[72px] px-5 backdrop-blur transition will-change-[filter]"
     >
       <div class="flex-1">
-        <a :href="homeLinkHref">
-          <IconIndomascot />
+        <a>
+          <IconIndomascotLogo />
         </a>
       </div>
       <!-- main menu button -->
       <div class="flex-none">
         <button
           class="btn-shadow btn-gradient btn-primary btn ml-2 rounded-full px-6 pt-1 shadow-inner"
-          :class="{ 'btn-disabled': $mainMenu }"
           @click="openMainMenu()"
         >
           <span class="josefin-sans font-bold shadow-inner">MENU</span>

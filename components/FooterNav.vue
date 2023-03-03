@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
-import { menus } from "@src/states";
 
-const { t } = useI18n(/*{ useScope: 'global' }*/);
+const menus = useMenus();
+
+const { t } = useI18n();
 </script>
 
 <template>
@@ -12,7 +13,7 @@ const { t } = useI18n(/*{ useScope: 'global' }*/);
         id="menu-bawah"
         class="flex flex-col justify-center lg:flex-row lg:space-x-4"
       >
-        <li v-for="menu in menus.get()" :key="menu.href">
+        <li v-for="menu in menus" :key="menu.href">
           <a
             rel="prefetch"
             class="link uppercase no-underline"
@@ -20,14 +21,12 @@ const { t } = useI18n(/*{ useScope: 'global' }*/);
             :aria-label="t(menu.text)"
           >
             <template v-if="menu.text === 'homepage'">
-              <font-awesome-layers class="fa-fw lg:mr-1">
-                <font-awesome-icon
-                  id="nav-text"
-                  class="!mb-0.5"
-                  :icon="['fas', 'house-chimney']"
-                  aria-hidden="true"
-                />
-              </font-awesome-layers>
+              <Icon
+                id="nav-text"
+                class="mb-1.5 lg:mr-1"
+                name="ion-home"
+                aria-hidden="true"
+              />
             </template>
             <template v-else>
               <span id="nav-text" class="font-bold">
@@ -41,7 +40,7 @@ const { t } = useI18n(/*{ useScope: 'global' }*/);
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 [data-theme="dark"] {
   #nav-text {
     @apply text-idm-base-100;

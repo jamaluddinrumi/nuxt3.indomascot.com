@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import { ref } from "vue";
 import { useI18n } from "vue-i18n";
 
 const props = defineProps({
@@ -31,13 +30,11 @@ const deferredPrompt = ref(null);
       :class="{ 'btn-disabled cursor-not-allowed': disabled }"
       @click="install()"
     >
-      <font-awesome-layers class="fa-fw">
-        <font-awesome-icon
-          :icon="['fab', icon]"
-          aria-hidden="true"
-          class="mt-px h-4 w-4"
-        />
-      </font-awesome-layers>
+      <Icon
+        :name="`ion:logo-${icon}`"
+        aria-hidden="true"
+        class="mt-px mr-1 h-4 w-4"
+      />
       <span class="mx-0.5 text-xs font-bold uppercase">{{ t("install") }}</span>
     </button>
     <label :for="id">
