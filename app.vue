@@ -13,6 +13,14 @@ import "@fontsource/josefin-sans/700.css";
 import { useStorage } from "@vueuse/core";
 import { themeChange } from "theme-change";
 
+const { locale } = useI18n();
+
+watchEffect(() => {
+  useHead({
+    htmlAttrs: [{ lang: locale.value }],
+  });
+});
+
 const colorScheme = useStorage("vueuse-color-scheme", "dark");
 
 onMounted(() => {
@@ -23,9 +31,6 @@ onMounted(() => {
 </script>
 
 <template>
-  <Head>
-    <Title>INDOMASCOT 2.0</Title>
-  </Head>
   <NuxtLoadingIndicator color="#29d" :height="2" :throttle="0" />
   <BaseHeader />
   <main class="container mx-auto min-h-screen lg:max-w-6xl">
