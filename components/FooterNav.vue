@@ -5,7 +5,7 @@ const localePath = useLocalePath();
 
 const menus = useMenus();
 
-const { t } = useI18n();
+const { t, locale } = useI18n();
 </script>
 
 <template>
@@ -18,7 +18,17 @@ const { t } = useI18n();
         <li v-for="menu in menus" :key="menu.href">
           <NuxtLink
             class="link uppercase no-underline"
-            :href="localePath(menu.href)"
+            :href="
+              localePath(
+                {
+                  path: localePath(menu.href),
+                  hash: menu.href.includes('#')
+                    ? `#${menu.href.split('#').pop()}`
+                    : undefined,
+                },
+                locale
+              )
+            "
             :aria-label="t(menu.text)"
           >
             <template v-if="menu.text === 'homepage'">

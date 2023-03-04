@@ -23,6 +23,10 @@ const theme = computed({
 
 const localePath = useLocalePath();
 
+const getRouteBaseName = useRouteBaseName();
+
+const localeRoute = useLocaleRoute();
+
 const { t, availableLocales, locale } = useI18n();
 
 const menuHalaman = ref(null);
@@ -103,7 +107,17 @@ onMounted(() => {
                   menu.href ===
                   (route.path || UsePrependTrailingSlash(route.path)),
               }"
-              :href="localePath(menu.href)"
+              :href="
+                localePath(
+                  {
+                    path: localePath(menu.href),
+                    hash: menu.href.includes('#')
+                      ? `#${menu.href.split('#').pop()}`
+                      : undefined,
+                  },
+                  locale
+                )
+              "
               :aria-label="t(menu.text)"
               @click="mainMenu = false"
             >

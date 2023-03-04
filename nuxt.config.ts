@@ -51,6 +51,7 @@ export default defineNuxtConfig({
     defaultLocale: "id",
     strategy: "prefix_except_default",
     vueI18n: {
+      legacy: false,
       fallbackLocale: "id",
     },
     baseUrl: "https://www.indomascot.com",

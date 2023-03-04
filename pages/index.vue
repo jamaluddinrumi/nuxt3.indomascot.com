@@ -11,8 +11,9 @@ const { data } = await storyblokApi.get(`cdn/stories`, {
   version: "draft",
 });
 const stories = data.stories as Array<object>;
-const storyPath =
-  storyblokStories[locale.value][UsePrependTrailingSlash(route.fullPath)];
+
+const path = route.hash ? route.path : route.fullPath;
+const storyPath = storyblokStories[locale.value][UsePrependTrailingSlash(path)];
 const { content } = stories.find((story) => story.full_slug === storyPath);
 const meta = content.meta;
 
