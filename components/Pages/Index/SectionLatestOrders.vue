@@ -10,7 +10,6 @@ import IconOnProgress from "@components/Icon/OnProgress.vue";
 import { ref, onMounted } from "vue";
 import { useStoryblok } from "@storyblok/vue";
 import { Image } from "@unpic/vue";
-import { useI18n } from "vue-i18n";
 import $device from "@src/device";
 import Human from "@components/Icon/Human.vue";
 import { menus } from "@src/states";

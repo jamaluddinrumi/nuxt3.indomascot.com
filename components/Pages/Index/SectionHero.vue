@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import $device from "@src/device";
 import { Image } from "@unpic/vue";
-import { useI18n } from "vue-i18n";
 
 import device from "@src/device";
 import { useHead } from "@unhead/vue";

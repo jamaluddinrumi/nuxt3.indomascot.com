@@ -93,10 +93,14 @@ loadPaths();
           :aria-current="index === parts.length - 1 ? 'page' : false"
         >
           <template v-if="part.text === 'homepage'">
-            <Icon class="logo !mb-1" name="ion-home" aria-hidden="true" />
+            <Icon
+              class="!mb-1 text-idm-base-content"
+              name="ion-home"
+              aria-hidden="true"
+            />
           </template>
           <template v-else>
-            <span>
+            <span class="text-idm-base-content">
               {{ t(part.text) }}
             </span>
           </template>

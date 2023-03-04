@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { useStoryblok } from "@storyblok/vue";
-import { useI18n } from "vue-i18n";
 import $device from "@src/device";
 
 const { t } = useI18n();

@@ -2,7 +2,6 @@
 import BaseHeader from "@components/BaseHeader.vue";
 import FlashyBg from "@components/FlashyBg.vue";
 import { inheritLocale, url, menus } from "@src/states";
-import { useI18n } from "vue-i18n";
 
 const props = defineProps<{
   inheritLocale?: string;

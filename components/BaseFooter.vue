@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { useI18n } from "vue-i18n";
 
 const appConfig = useAppConfig();
 
@@ -8,10 +7,12 @@ const { t } = useI18n();
 
 <template>
   <footer
-    class="container mx-auto mt-8 max-w-6xl bg-repeat text-center text-base-content"
+    class="container mx-auto mt-8 max-w-6xl bg-repeat text-center"
     role="contentinfo"
   >
-    <div class="container mx-auto grid grid-cols-1 pb-8 lg:grid-cols-3 lg:pb-0">
+    <div
+      class="text-idm-base-content container mx-auto grid grid-cols-1 pb-8 lg:grid-cols-3 lg:pb-0"
+    >
       <div class="mt-16">
         <h3
           class="widgettitle mb-8 text-[1.125rem] text-sm font-light uppercase lg:text-base"
@@ -138,17 +139,5 @@ footer .inner-footer > .cell:not(:last-child) {
 
 footer .inner-footer > .cell:last-child {
   @apply pt-4 pb-8;
-}
-
-[data-theme="dark"] {
-  footer > .container {
-    @apply text-idm-base-100;
-  }
-}
-
-[data-theme="light"] {
-  footer > .container {
-    @apply text-idm-base-300;
-  }
 }
 </style>

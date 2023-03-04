@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import { ref } from "vue";
-import { useI18n } from "vue-i18n";
 import { Image } from "@unpic/vue";
 
 const { t } = useI18n(/*{ useScope: 'global' }*/);

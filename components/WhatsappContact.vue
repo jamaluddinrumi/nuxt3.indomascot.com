@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import { useI18n } from "vue-i18n";
 import WhatsappButton from "./WhatsappButton.vue";
 import { Image } from "@unpic/vue";
 

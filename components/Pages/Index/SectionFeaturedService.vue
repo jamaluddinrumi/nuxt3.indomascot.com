@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { ref, onMounted, nextTick, onBeforeUnmount } from "vue";
-import { useI18n } from "vue-i18n";
 import { Image } from "@unpic/vue";
 
 const { t } = useI18n();

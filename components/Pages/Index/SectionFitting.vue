@@ -3,7 +3,6 @@ import { Image as UnpicImage } from "@unpic/vue";
 import Moveable, { VueMoveableInstance } from "vue3-moveable";
 import $device from "@src/device";
 import { ref } from "vue";
-import { useI18n } from "vue-i18n";
 
 const { t } = useI18n();
 

@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import { onMounted, nextTick, ref } from "vue";
-import { useI18n } from "vue-i18n";
 import menus from "@src/menu";
 
 const portfolioLink = ref(menus.find((item) => item.text === "portfolio").href);

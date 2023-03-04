@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { useI18n } from "vue-i18n";
-
 const localePath = useLocalePath();
 
 const menus = useMenus();
@@ -34,13 +32,13 @@ const { t, locale } = useI18n();
             <template v-if="menu.text === 'homepage'">
               <Icon
                 id="nav-text"
-                class="mb-2 lg:mr-1"
+                class="text-idm-base-content mb-2 lg:mr-1"
                 name="ion-home"
                 aria-hidden="true"
               />
             </template>
             <template v-else>
-              <span id="nav-text" class="font-bold">
+              <span id="nav-text" class="text-idm-base-content font-bold">
                 {{ t(menu.text) }}
               </span>
             </template>
@@ -50,17 +48,3 @@ const { t, locale } = useI18n();
     </nav>
   </div>
 </template>
-
-<style lang="scss">
-[data-theme="dark"] {
-  #nav-text {
-    @apply text-idm-base-100;
-  }
-}
-
-[data-theme="light"] {
-  #nav-text {
-    @apply text-idm-base-300;
-  }
-}
-</style>
