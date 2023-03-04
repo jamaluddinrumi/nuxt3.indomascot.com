@@ -55,7 +55,7 @@ onMounted(() => {
   switchTheme.value = function (event: Event) {
     const theme = event.target.value;
 
-    mainMenu.value = false;
+    // mainMenu.value = false;
 
     const colorScheme = useStorage("vueuse-color-scheme", "dark");
 
