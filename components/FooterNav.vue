@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
 
+const localePath = useLocalePath();
+
 const menus = useMenus();
 
 const { t } = useI18n();
@@ -14,16 +16,15 @@ const { t } = useI18n();
         class="flex flex-col justify-center lg:flex-row lg:space-x-4"
       >
         <li v-for="menu in menus" :key="menu.href">
-          <a
-            rel="prefetch"
+          <NuxtLink
             class="link uppercase no-underline"
-            :href="menu.href"
+            :href="localePath(menu.href)"
             :aria-label="t(menu.text)"
           >
             <template v-if="menu.text === 'homepage'">
               <Icon
                 id="nav-text"
-                class="mb-1.5 lg:mr-1"
+                class="mb-2 lg:mr-1"
                 name="ion-home"
                 aria-hidden="true"
               />
@@ -33,7 +34,7 @@ const { t } = useI18n();
                 {{ t(menu.text) }}
               </span>
             </template>
-          </a>
+          </NuxtLink>
         </li>
       </ul>
     </nav>

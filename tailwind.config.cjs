@@ -6,6 +6,8 @@ const daisyUi = require("daisyui/src/colors/themes");
 module.exports = {
   content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
   darkMode: ["class", '[data-theme="dark"]'], // or 'media' or 'class'
+  // darkMode: ['[data-theme="dark"]'],
+  // darkMode: "media",
   theme: {
     screens: Object.fromEntries(
       Object.entries(defaultTheme.screens).filter(([key, value]) =>
@@ -106,6 +108,7 @@ module.exports = {
     require("daisyui"),
   ],
   daisyui: {
+    darkTheme: false,
     themes: [
       {
         dark: {
@@ -156,7 +159,7 @@ module.exports = {
         light: {
           primary: "hsl(270, 60%, 52%)",
           "primary-focus": "#A667E4",
-          "primary-content": daisyUi["[data-theme=dark]"]["primary-content"],
+          "primary-content": daisyUi["[data-theme=light]"]["primary-content"],
           secondary: "#878593",
           "secondary-focus": daisyUi["[data-theme=light]"]["secondary-focus"],
           "secondary-content":
@@ -199,5 +202,4 @@ module.exports = {
       },
     ],
   },
-  darkTheme: false,
 };

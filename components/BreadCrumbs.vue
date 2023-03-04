@@ -1,104 +1,106 @@
 <script setup lang="ts">
-import { startCase } from "lodash-es";
-import { useI18n } from "vue-i18n";
+const menus = useMenus();
 
-const { t } = useI18n();
+const router = useRouter();
 
-const props = defineProps({
-  pathname: {
-    type: String,
-    default: undefined,
-  },
-  reqPathname: {
-    type: String,
-    default: undefined,
-  },
-  inheritLocale: {
-    type: String,
-    default: undefined,
-  },
-  menus: {
-    type: Array,
-    default: undefined,
-  },
-});
+const localePath = useLocalePath();
 
-interface BreadcrumbItem {
+const { t, locale } = useI18n();
+
+const isHomepage = ref(false);
+
+type BreadcrumbItem = {
   text: string;
   href: string;
-  alt: string;
-  "aria-label": string;
-}
+};
 
-// const paths = Astro.url.pathname.split("/").filter((crumb: any) => crumb);
-const paths = props.pathname.split("/").filter((crumb: any) => crumb);
+const paths = ref([]);
 
-/**
- * Array of breadcrumb items.
- * The first item is the index page.
- */
-let parts: Array<BreadcrumbItem> = [];
+const parts = ref([]);
 
-if (props.inheritLocale === "id") {
-  parts.push({
-    text: t("homepage"),
-    href: "/",
-    alt: t("homepage"),
-    "aria-label": t("homepage"),
-  });
-}
+function loadPaths() {
+  paths.value = router.currentRoute.value.path
+    .split("/")
+    .filter((crumb) => crumb);
 
-/**
- * Loop through the paths and create a breadcrumb item for each.
- */
-paths.forEach((text: string, index: number) => {
-  const href = `/${paths.slice(0, index + 1).join("/")}`;
+  parts.value = [];
 
-  parts = [
-    ...parts,
-    {
-      text: props.menus.find((item) => item.href === href).text,
+  paths.value.forEach((path: string, index: number) => {
+    const href = `/${paths.value.slice(0, index + 1).join("/")}`;
+
+    // console.log("-----");
+    // console.log("path", path);
+    // console.log("index", index);
+    // console.log("href", href);
+
+    // menus.forEach((item) =>
+    //   console.log("item href", UsePrependTrailingSlash(localePath(item.href)))
+    // );
+
+    // console.log("/ ", UsePrependTrailingSlash(localePath("/")));
+
+    // console.log("href", UsePrependTrailingSlash(localePath(href)));
+
+    const menu = ref<BreadcrumbItem>(
+      menus.find(
+        (item) =>
+          UsePrependTrailingSlash(localePath(item.href)) ===
+          UsePrependTrailingSlash(localePath(href))
+      )
+    );
+
+    // console.log("menu ", menu);
+
+    const text = menu.value?.text;
+    // console.log("text", text);
+
+    parts.value.push({
+      text,
       href,
-      alt: startCase(text),
-      "aria-label": startCase(text),
-    },
-  ];
+    });
+  });
+
+  if (locale.value === "id") {
+    parts.value.unshift({
+      text: "homepage",
+      href: localePath("/"),
+    });
+  }
+
+  isHomepage.value =
+    localePath(router.currentRoute.value.path) === localePath("/");
+}
+
+watch(router.currentRoute, () => {
+  loadPaths();
 });
 
-parts = parts.filter(function (item) {
-  return item.text !== "en";
-});
+loadPaths();
 </script>
 
 <template>
   <nav
-    v-if="pathname !== ('/' && '/en')"
+    v-if="!isHomepage"
     aria-label="Breadcrumbs"
     class="container navbar breadcrumbs mx-auto w-full max-w-sm px-5 lg:max-w-6xl"
   >
     <ul>
       <li v-for="(part, index) in parts" :key="part.href">
-        <a
+        <NuxtLink
           :href="part.href"
-          :alt="part.alt"
-          :aria-label="part['aria-label']"
+          :alt="t(part.text)"
+          :aria-label="t(part.text)"
           :aria-current="index === parts.length - 1 ? 'page' : false"
         >
-          <template v-if="part.href === '/' || part.href === '/en'">
-            <font-awesome-layers class="fa-fw">
-              <font-awesome-icon
-                class="logo !mb-0.5"
-                :icon="['fas', 'house-chimney']"
-                aria-hidden="true"
-              />
-            </font-awesome-layers>
+          <template v-if="part.text === 'homepage'">
+            <Icon class="logo !mb-1" name="ion-home" aria-hidden="true" />
           </template>
           <template v-else>
             <span>
               {{ t(part.text) }}
             </span>
           </template>
-        </a>
+        </NuxtLink>
       </li>
     </ul>
   </nav>

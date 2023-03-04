@@ -3,8 +3,15 @@ import { useDark } from "@vueuse/core";
 
 const isDark = useDark();
 
+const localePath = useLocalePath();
+
+const mainMenu = useMainMenu();
+
 function openMainMenu() {
   // if (!mainMenu.get()) mainMenu.set(true);
+  if (!mainMenu.value) {
+    mainMenu.value = true;
+  }
 }
 
 useHead({
@@ -26,9 +33,9 @@ useHead({
       class="supports-backdrop-blur:bg-white/60 navbar h-[72px] px-5 backdrop-blur transition will-change-[filter]"
     >
       <div class="flex-1">
-        <a>
+        <NuxtLink :href="localePath('/')">
           <IconIndomascotLogo />
-        </a>
+        </NuxtLink>
       </div>
       <!-- main menu button -->
       <div class="flex-none">

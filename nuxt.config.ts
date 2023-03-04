@@ -12,7 +12,16 @@ export default defineNuxtConfig({
     "@nuxtjs/i18n",
     "@nuxtjs/device",
     "nuxt-icon",
+    "@nuxt/image-edge",
+    "@vueuse/nuxt",
+    "@vueuse/motion/nuxt",
   ],
+
+  image: {
+    storyblok: {
+      baseURL: "https://a.storyblok.com",
+    },
+  },
 
   storyblok: {
     accessToken: process.env.STORYBLOK_API_KEY,

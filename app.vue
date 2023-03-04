@@ -10,6 +10,16 @@ import "@fontsource/josefin-sans/300.css";
 import "@fontsource/josefin-sans/400.css";
 import "@fontsource/josefin-sans/600.css";
 import "@fontsource/josefin-sans/700.css";
+import { useStorage } from "@vueuse/core";
+import { themeChange } from "theme-change";
+
+const colorScheme = useStorage("vueuse-color-scheme", "dark");
+
+onMounted(() => {
+  themeChange(false);
+
+  document.documentElement.setAttribute("data-theme", colorScheme.value);
+});
 </script>
 
 <template>
@@ -18,13 +28,15 @@ import "@fontsource/josefin-sans/700.css";
   </Head>
   <NuxtLoadingIndicator color="#29d" :height="2" :throttle="0" />
   <BaseHeader />
-  <main>
+  <main class="container mx-auto min-h-screen lg:max-w-6xl">
+    <BreadCrumbs />
     <NuxtPage />
   </main>
   <BaseFooter />
+  <MainMenu />
 </template>
 
-<style>
+<style lang="scss">
 ::-moz-selection {
   /* Code for Firefox */
   color: #fefefe;
@@ -59,5 +71,9 @@ a {
 .bangers {
   font-family: "Bangers", sans-serif;
   @apply tracking-wide;
+}
+
+body {
+  @apply bg-body bg-gradient;
 }
 </style>

@@ -1,49 +1,39 @@
 <script lang="ts" setup>
-import $device from "@src/device";
-import { ref, onMounted, computed } from "vue";
-import { onClickOutside } from "@vueuse/core";
-import InstallButton from "@components/InstallButton.vue";
-import { mainMenu, isDark } from "@src/states";
-import { useStore } from "@nanostores/vue";
-import { useI18n } from "vue-i18n";
-import { getBrowserHeight, Dimension } from "@src/dimension";
-import { themeChange } from "theme-change";
-import { url, menus } from "@src/states";
-import { prependTrailingSlash } from "@src/utils";
+import { onClickOutside, useDark, useStorage } from "@vueuse/core";
+import { Dimension } from "@/composables/dimension";
+
+const router = useRouter();
+
+const route = router.currentRoute;
+
+const { isDesktop } = useDevice();
+
+const isDark = useDark();
 
 const themes = ref(["light", "dark"]);
 
 const theme = computed({
   get() {
-    return isDark.value.value ? "dark" : "light";
+    return isDark.value ? "dark" : "light";
   },
   set(theme) {
-    isDark.value.value = theme === "dark" ? true : false;
+    isDark.value = theme === "dark" ? true : false;
   },
 });
 
-const props = defineProps({
-  localizedPaths: {
-    type: Object,
-    default: new Object(),
-  },
-  inheritLocale: {
-    type: String,
-    default: "",
-  },
-});
+const localePath = useLocalePath();
 
-const inheritLocaleRef = ref(props.inheritLocale);
-
-const { t, availableLocales } = useI18n();
-
-const $mainMenu = useStore(mainMenu);
+const { t, availableLocales, locale } = useI18n();
 
 const menuHalaman = ref(null);
 
-onClickOutside(menuHalaman, () => mainMenu.set(false));
+const menus = useMenus();
 
-const browserDimension = ref<Dimension>(null);
+const mainMenu = useMainMenu();
+
+onClickOutside(menuHalaman, () => (mainMenu.value = false));
+
+const browserDimension = ref<Dimension>(0);
 
 const switchLanguage = ref(function (event: Event) {});
 
@@ -55,15 +45,21 @@ onMounted(() => {
   switchLanguage.value = function (event: Event) {
     const lang = event.target.value;
 
-    window.location = props.localizedPaths[lang];
-  };
+    mainMenu.value = false;
 
-  themeChange(false);
+    locale.value = lang;
+
+    navigateTo(localePath("", lang));
+  };
 
   switchTheme.value = function (event: Event) {
     const theme = event.target.value;
 
-    localStorage.setItem("vueuse-color-scheme", theme);
+    mainMenu.value = false;
+
+    const colorScheme = useStorage("vueuse-color-scheme", "dark");
+
+    colorScheme.value = theme;
 
     document.documentElement.setAttribute("data-theme", theme);
   };
@@ -72,7 +68,7 @@ onMounted(() => {
 
 <template>
   <div
-    v-if="$mainMenu"
+    v-if="mainMenu"
     id="main-menu"
     v-motion
     :initial="{
@@ -99,23 +95,22 @@ onMounted(() => {
         class="grid min-h-screen place-content-center overflow-y-scroll pt-16 pb-40 lg:pb-20"
       >
         <ul id="menu-halaman" ref="menuHalaman" class="vertical justify menu">
-          <li v-for="menu in menus.get()" :key="menu.text" class="my-0.5">
-            <a
-              rel="prefetch"
+          <li v-for="menu in menus" :key="menu.text" class="my-0.5">
+            <NuxtLink
               class="flex justify-center rounded-full p-4 focus-visible:ring focus-visible:ring-indomascot-yellow"
               :class="{
                 'btn-shadow btn-gradient active':
                   menu.href ===
-                  (url.get().pathname ||
-                    prependTrailingSlash(url.get().pathname)),
+                  (route.path || UsePrependTrailingSlash(route.path)),
               }"
-              :href="menu.href"
-              :aria-label="menu.href === '/' ? t('homepage') : menu.text"
+              :href="localePath(menu.href)"
+              :aria-label="t(menu.text)"
+              @click="mainMenu = false"
             >
               <span class="josefin-sans text-base font-bold uppercase">
                 {{ t(menu.text) }}
               </span>
-            </a>
+            </NuxtLink>
           </li>
           <li class="my-2">
             <div class="form-control hover:bg-transparent">
@@ -123,17 +118,15 @@ onMounted(() => {
                 <span class="label-text">{{ t("chooseLanguage") }}:</span>
               </label>
               <select
-                v-model="inheritLocaleRef"
-                @change="switchLanguage"
+                v-model="locale"
                 class="select-bordered select w-full max-w-xs"
+                @change="switchLanguage"
               >
                 <option
                   v-for="availableLocale in availableLocales"
                   :key="availableLocale"
                   :value="availableLocale"
-                  :selected="
-                    availableLocale === inheritLocaleRef ? true : false
-                  "
+                  :selected="availableLocale === locale ? true : false"
                 >
                   {{ t(`language.${availableLocale}`) }}
                 </option>
@@ -147,8 +140,9 @@ onMounted(() => {
               </label>
               <select
                 v-model="theme"
-                @change="switchTheme"
                 class="select-bordered select w-full max-w-xs"
+                data-choose-theme
+                @change="switchTheme"
               >
                 <option
                   v-for="themeItem in themes"
@@ -162,10 +156,10 @@ onMounted(() => {
             </div>
           </li>
           <li class="mx-auto mt-11 flex w-fit justify-center lg:hidden">
-            <InstallButton :disabled="$device.isDesktop" icon="apple" />
+            <InstallButton :disabled="isDesktop" icon="apple" />
           </li>
           <li class="mx-auto mt-2 flex w-fit justify-center lg:hidden">
-            <InstallButton :disabled="$device.isDesktop" icon="android" />
+            <InstallButton :disabled="isDesktop" icon="android" />
           </li>
           <li class="mx-auto mt-2 mb-4 flex w-fit justify-center lg:hidden">
             <InstallButton icon="chrome" />
