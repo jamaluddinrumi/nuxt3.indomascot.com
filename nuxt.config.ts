@@ -1,10 +1,20 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   runtimeConfig: {
-    public: {},
+    indexable: true,
+    public: {
+      trailingSlash: true,
+      siteUrl: process.env.PUBLIC_BASE_URL,
+      siteName: "INDOMASCOT",
+      siteDescription:
+        "INDOMASCOT melayani pembuatan kostum badut maskot untuk branding produk atau instansi anda dengan desain dari anda sendiri. (WA 0822-2155-6633)",
+      language: "id",
+    },
   },
 
   css: ["@/assets/css/style.scss"],
+
+  extends: ["nuxt-seo-kit"],
 
   modules: [
     "@storyblok/nuxt",
@@ -16,6 +26,18 @@ export default defineNuxtConfig({
     "@vueuse/nuxt",
     "@vueuse/motion/nuxt",
   ],
+
+  schemaOrg: {
+    host: process.env.PUBLIC_BASE_URL,
+  },
+
+  robots: {
+    sitemap: process.env.PUBLIC_SITEMAP_PATH,
+  },
+
+  linkChecker: {
+    failOn404: true,
+  },
 
   image: {
     storyblok: {

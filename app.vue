@@ -1,5 +1,5 @@
 <script setup>
-import "@fontsource/bangers/400.css";
+import "isomorphic-fetch"; // https://github.com/storyblok/storyblok-js-client#fetch-use-polyfill-if-needed---version-5
 import "@fontsource/inter/300.css";
 import "@fontsource/inter/400.css";
 import "@fontsource/inter/600.css";
@@ -31,6 +31,22 @@ onMounted(() => {
 </script>
 
 <template>
+  <SchemaOrgLocalBusiness
+    name="INDOMASCOT"
+    image="/indomascot_logo_gradient.svg"
+    :address="{
+      streetAddress:
+        'Jl. Cukang Kawung Gang Bojong Mekar No. 53 RT 01 RW 15 Cibeunying Kaler, Kec. Cimenyan',
+      addressLocality: 'Bandung',
+      addressRegion: 'BDO',
+      postalCode: '40191',
+      addressCountry: 'ID',
+    }"
+  />
+  <SchemaOrgWebSite name="INDOMASCOT" />
+  <SchemaOrgWebPage />
+  <SeoKit />
+  <OgImageStatic />
   <NuxtLoadingIndicator color="#29d" :height="2" :throttle="0" />
   <BaseHeader />
   <main class="container mx-auto min-h-screen lg:max-w-6xl">

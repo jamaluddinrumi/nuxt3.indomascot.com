@@ -1,13 +1,17 @@
 <script setup lang="ts">
 const menus = useMenus();
 
-const router = useRouter();
+const route = useRoute();
 
 const localePath = useLocalePath();
 
 const { t, locale } = useI18n();
 
 const isHomepage = ref(false);
+
+const localRoute = useLocaleRoute();
+
+const getRouteBaseName = useRouteBaseName();
 
 type BreadcrumbItem = {
   text: string;
@@ -19,9 +23,7 @@ const paths = ref([]);
 const parts = ref([]);
 
 function loadPaths() {
-  paths.value = router.currentRoute.value.path
-    .split("/")
-    .filter((crumb) => crumb);
+  paths.value = route.path.split("/").filter((crumb) => crumb);
 
   parts.value = [];
 
@@ -51,7 +53,7 @@ function loadPaths() {
 
     // console.log("menu ", menu);
 
-    const text = menu.value?.text;
+    const text = t(menu.value?.text);
     // console.log("text", text);
 
     parts.value.push({
@@ -62,16 +64,15 @@ function loadPaths() {
 
   if (locale.value === "id") {
     parts.value.unshift({
-      text: "homepage",
+      text: t("homepage"),
       href: localePath("/"),
     });
   }
 
-  isHomepage.value =
-    localePath(router.currentRoute.value.path) === localePath("/");
+  isHomepage.value = localePath(route.path) === localePath("/");
 }
 
-watch(router.currentRoute, () => {
+watch(route, () => {
   loadPaths();
 });
 
@@ -84,28 +85,28 @@ loadPaths();
     aria-label="Breadcrumbs"
     class="container navbar breadcrumbs mx-auto w-full max-w-sm px-5 lg:max-w-6xl"
   >
-    <ul>
+    <SchemaOrgBreadcrumb as="ul" :item-list-element="parts">
       <li v-for="(part, index) in parts" :key="part.href">
         <NuxtLink
           :href="part.href"
-          :alt="t(part.text)"
-          :aria-label="t(part.text)"
+          :alt="part.text"
+          :aria-label="part.text"
           :aria-current="index === parts.length - 1 ? 'page' : false"
         >
-          <template v-if="part.text === 'homepage'">
+          <template v-if="getRouteBaseName(localRoute(part.href)) === 'index'">
             <Icon
-              class="!mb-1 text-idm-base-content"
+              class="text-idm-base-content !mb-1"
               name="ion-home"
               aria-hidden="true"
             />
           </template>
           <template v-else>
             <span class="text-idm-base-content">
-              {{ t(part.text) }}
+              {{ part.text }}
             </span>
           </template>
         </NuxtLink>
       </li>
-    </ul>
+    </SchemaOrgBreadcrumb>
   </nav>
 </template>
