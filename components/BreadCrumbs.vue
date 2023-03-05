@@ -30,18 +30,7 @@ function loadPaths() {
   paths.value.forEach((path: string, index: number) => {
     const href = `/${paths.value.slice(0, index + 1).join("/")}`;
 
-    // console.log("-----");
-    // console.log("path", path);
-    // console.log("index", index);
-    // console.log("href", href);
-
-    // menus.forEach((item) =>
-    //   console.log("item href", UsePrependTrailingSlash(localePath(item.href)))
-    // );
-
-    // console.log("/ ", UsePrependTrailingSlash(localePath("/")));
-
-    // console.log("href", UsePrependTrailingSlash(localePath(href)));
+    const item = href;
 
     const menu = ref<BreadcrumbItem>(
       menus.find(
@@ -51,21 +40,24 @@ function loadPaths() {
       )
     );
 
-    // console.log("menu ", menu);
-
     const text = t(menu.value?.text);
-    // console.log("text", text);
+
+    const name = text;
 
     parts.value.push({
-      text,
       href,
+      text,
+      item,
+      name,
     });
   });
 
   if (locale.value === "id") {
     parts.value.unshift({
-      text: t("homepage"),
       href: localePath("/"),
+      text: t("homepage"),
+      item: localePath("/"),
+      name: t("homepage"),
     });
   }
 
@@ -88,6 +80,7 @@ loadPaths();
     <SchemaOrgBreadcrumb as="ul" :item-list-element="parts">
       <li v-for="(part, index) in parts" :key="part.href">
         <NuxtLink
+          v-if="index < parts.length"
           :href="UsePrependTrailingSlash(part.href)"
           :alt="part.text"
           :aria-label="part.text"
@@ -106,6 +99,9 @@ loadPaths();
             </span>
           </template>
         </NuxtLink>
+        <span v-else class="text-idm-base-content">
+          {{ part.text }}
+        </span>
       </li>
     </SchemaOrgBreadcrumb>
   </nav>
