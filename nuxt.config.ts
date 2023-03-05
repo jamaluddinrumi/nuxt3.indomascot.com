@@ -47,6 +47,9 @@ export default defineNuxtConfig({
 
   storyblok: {
     accessToken: process.env.STORYBLOK_API_KEY,
+    apiOptions: {
+      timeout: 60,
+    },
   },
 
   device: {

@@ -27,10 +27,7 @@ const clients = ref({
   },
   client4: {
     id: "ojk",
-    src: "https://a.storyblok.com/f/118728/184x55/99380a6a72/ojk.svg",
-    width: "184",
-    height: "55",
-    sizes: "xs:137px lg:137px",
+    src: "https://a.storyblok.com/f/118728/184x55/c477eff74a/ojk.svg",
   },
 });
 </script>
@@ -45,10 +42,10 @@ const clients = ref({
       </h3>
     </div>
     <div class="mt-0 grid grid-rows-1 lg:mt-8 lg:grid-cols-5">
-      <img
+      <NuxtImg
         v-for="(client, index) in clients"
         :key="index"
-        cdn="storyblok"
+        provider="storyblok"
         preload
         class="mx-auto mt-4 max-h-[55px] lg:mt-0"
         :src="client.src"

@@ -49,7 +49,9 @@ const schema = getSchema();
     <BreadCrumbs />
     <NuxtPage />
   </main>
+  <WhatsappContact />
   <BaseFooter />
+  <FloatingWhatsapp :hide="false" />
   <MainMenu />
 </template>
 

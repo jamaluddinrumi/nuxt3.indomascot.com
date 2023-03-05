@@ -2,7 +2,7 @@
   "private": true,
   "scripts": {
     "build": "nuxt build",
-    "dev": "NODE_TLS_REJECT_UNAUTHORIZED=0 nuxt dev --port 3007 --https --ssl-cert ../127.0.0.1+7.pem --ssl-key ../127.0.0.1+7-key.pem",
+    "dev": "NODE_TLS_REJECT_UNAUTHORIZED=0 nuxt dev --port 3008 --https --ssl-cert ../127.0.0.1+7.pem --ssl-key ../127.0.0.1+7-key.pem",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare"
@@ -14,7 +14,7 @@
     "@nuxt/eslint-config": "^0.1.1",
     "@nuxt/image-edge": "1.0.0-27954023.4cee565",
     "@nuxtjs/device": "^3.1.0",
-    "@nuxtjs/html-validator": "^1.2.3",
+    "@nuxtjs/html-validator": "^1.2.4",
     "@nuxtjs/i18n": "8.0.0-beta.10",
     "@nuxtjs/robots": "^3.0.0",
     "@nuxtjs/tailwindcss": "^6.4.1",

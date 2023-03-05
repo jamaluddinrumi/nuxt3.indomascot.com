@@ -24,8 +24,29 @@ watchEffect(() => {
     ogImage: () => meta.og_image,
   });
 });
+
+const homepageStory = await useAsyncStoryblok("halaman-depan", {
+  version: "draft",
+});
+
+const portfolioStory = await storyblokApi.get("cdn/stories/badut-maskot", {
+  version: "draft",
+});
+
+const photos = ref(new Array());
+
+photos.value = portfolioStory.data.story.content.body[0].columns
+  .slice(-10)
+  .reverse();
 </script>
 
 <template>
   <PagesIndexSectionHero />
+  <PagesIndexSectionClients />
+  <PagesIndexSectionDefinition />
+  <PagesIndexSectionVisionMision />
+  <PagesIndexSectionFeaturedService />
+  <PagesIndexSectionPortfolio :content="homepageStory.content" />
+  <PagesIndexSectionLatestOrders :photos="photos" />
+  <PagesIndexSectionFitting />
 </template>

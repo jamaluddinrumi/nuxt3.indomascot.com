@@ -1,7 +1,4 @@
 <script setup lang="ts">
-import { ref, onMounted, nextTick, onBeforeUnmount } from "vue";
-import { Image } from "@unpic/vue";
-
 const { t } = useI18n();
 
 const keunggulanBahan = ref(null);
@@ -93,12 +90,12 @@ function onIntersecting(entries, observer) {
           :class="{ levitate: showKeunggulanBahan }"
           class="my-0 mx-auto text-center"
         >
-          <Image
-            cdn="storyblok"
+          <NuxtImg
+            provider="storyblok"
             src="https://a.storyblok.com/f/118728/655x553/d2c574ed1e/benang.png"
-            width="655"
-            height="553"
-            sizes="xs:275px lg:588px"
+            width="510"
+            height="430"
+            sizes="xs:275px lg:510px"
             alt="high quality material (material pembuatan) illustration"
             placeholder
           />
@@ -106,8 +103,8 @@ function onIntersecting(entries, observer) {
       </div>
       <div class="right">
         <figure class="oval-hijau mb-6 hidden lg:block">
-          <Image
-            cdn="storyblok"
+          <NuxtImg
+            provider="storyblok"
             src="https://a.storyblok.com/f/118728/80x80/1c4cdf35dd/oval-hijau.png"
             width="80"
             height="80"
@@ -158,8 +155,8 @@ function onIntersecting(entries, observer) {
     >
       <div class="left order-2">
         <figure class="oval-orange mb-6 hidden lg:block">
-          <Image
-            cdn="storyblok"
+          <NuxtImg
+            provider="storyblok"
             src="https://a.storyblok.com/f/118728/80x80/0ad0820472/oval-orange.png"
             width="80"
             height="80"
@@ -200,12 +197,12 @@ function onIntersecting(entries, observer) {
             :class="{ levitate: showKeunggulanWaktu }"
             class="my-0 mx-auto text-center"
           >
-            <Image
-              cdn="storyblok"
+            <NuxtImg
+              provider="storyblok"
               src="https://a.storyblok.com/f/118728/635x469/632db168bb/speedometer.png"
-              width="635"
-              height="469"
-              sizes="xs:275px lg:588px"
+              width="583"
+              height="430"
+              sizes="xs:275px lg:583px"
               alt="fast (pengerjaan cepat) illustration"
             />
           </figure>
@@ -234,8 +231,8 @@ function onIntersecting(entries, observer) {
           :class="{ levitate: showKeunggulanMasker }"
           class="mx-auto my-0 text-center"
         >
-          <Image
-            cdn="storyblok"
+          <NuxtImg
+            provider="storyblok"
             src="https://a.storyblok.com/f/118728/580x430/21e6d6fb2c/kipas-angin.png"
             alt="head fan (kipas angin) illustration"
             width="580"
@@ -246,8 +243,8 @@ function onIntersecting(entries, observer) {
       </div>
       <div class="right">
         <figure class="oval-merah mb-6 hidden lg:block">
-          <Image
-            cdn="storyblok"
+          <NuxtImg
+            provider="storyblok"
             src="https://a.storyblok.com/f/118728/80x80/b3923b406c/oval-merah.png"
             width="80"
             height="80"
@@ -329,13 +326,5 @@ function onIntersecting(entries, observer) {
   100% {
     -webkit-transform: translateY(-25px);
   }
-}
-
-[data-theme="dark"] .description {
-  @apply text-idm-base-100;
-}
-
-[data-theme="light"] .description {
-  @apply text-idm-base-300;
 }
 </style>

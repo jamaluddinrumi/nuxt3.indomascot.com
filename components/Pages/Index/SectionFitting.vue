@@ -1,9 +1,7 @@
 <script setup lang="ts">
-import { Image as UnpicImage } from "@unpic/vue";
-import Moveable, { VueMoveableInstance } from "vue3-moveable";
-import $device from "@src/device";
-import { ref } from "vue";
+import Moveable from "vue3-moveable";
 
+const { isDesktop, isMobile } = useDevice();
 const { t } = useI18n();
 
 const target = ref(null);
@@ -43,12 +41,12 @@ function updateCanvasImage(e) {
 
 function drawCanvasImage(img) {
   const canvas = target.value;
-  canvas.width = 200;
-  canvas.height = 200;
+  canvas.width = 150;
+  canvas.height = 150;
 
   const ctx = canvas.getContext("2d");
   ctx.globalAlpha = 0.666;
-  ctx.drawImage(img, 0, 0, 200, 200);
+  ctx.drawImage(img, 0, 0, 150, 150);
 }
 </script>
 
@@ -57,9 +55,7 @@ function drawCanvasImage(img) {
     <div
       id="bg-blur"
       class="absolute blur-lg"
-      :class="[
-        $device.isDesktopOrTablet ? 'h-[40px] w-[157px]' : 'h-[24px] w-[97px]',
-      ]"
+      :class="[isDesktop ? 'h-[40px] w-[157px]' : 'h-[24px] w-[97px]']"
     ></div>
     <h2 id="portfolio-title" class="relative mb-4 lg:mb-0">
       <span
@@ -76,13 +72,13 @@ function drawCanvasImage(img) {
         class="order-2 mt-4 flex flex-col justify-self-center lg:order-1 lg:mt-0"
       >
         <div class="relative flex justify-center">
-          <UnpicImage
-            cdn="storyblok"
+          <NuxtImg
+            provider="storyblok"
             loading="lazy"
             width="275"
             height="275"
             sizes="sm:275px lg:275px"
-            src="https://a.storyblok.com/f/118728/1564x1584/0a5e1806bb/mascot-costume-proportional-design-guide.png/m/275x275"
+            src="https://a.storyblok.com/f/118728/1564x1584/0a5e1806bb/mascot-costume-proportional-design-guide.png"
             class="w-60 text-center"
             alt="panduan tubuh manusia yang proporsional"
           />
@@ -113,10 +109,10 @@ function drawCanvasImage(img) {
             <label
               class="bg-gradient flex cursor-pointer justify-center rounded-full bg-primary px-6 py-4 uppercase tracking-wide text-neutral-content"
             >
-              <font-awesome-icon
-                :icon="['fas', 'cloud-upload-alt']"
+              <Icon
+                name="ion-cloud-upload-sharp"
                 aria-hidden="true"
-                class="mt-px h-4 w-4 fill-neutral-content/90 text-neutral-content/90 lg:mt-1 lg:h-5 lg:w-5"
+                class="mt-px h-4 w-4 fill-neutral-content/90 text-neutral-content/90 lg:mt-0.5 lg:h-5 lg:w-5"
               />
               <span
                 class="ml-1 mr-0.5 text-xs font-bold uppercase leading-normal lg:ml-2 lg:text-base"
@@ -131,22 +127,22 @@ function drawCanvasImage(img) {
       <!-- uploader -->
       <div class="grid-rows-fr order-1 mt-0 grid gap-4 lg:order-2">
         <div class="grid max-w-lg grid-cols-2 place-content-start gap-2">
-          <UnpicImage
-            cdn="storyblok"
+          <NuxtImg
+            provider="storyblok"
             loading="lazy"
             width="281"
             height="281"
             sizes="sm:133px lg:281px"
-            src="https://a.storyblok.com/f/118728/782x793/604d6a7a85/uniku-fitting-is-passed.png/m/281x281"
+            src="https://a.storyblok.com/f/118728/782x793/604d6a7a85/uniku-fitting-is-passed.png"
             alt="contoh desain maskot yang tidak proporsional dengan tubuh manusia"
           />
-          <UnpicImage
-            cdn="storyblok"
+          <NuxtImg
+            provider="storyblok"
             loading="lazy"
             width="281"
             height="281"
             sizes="sm:133px lg:281px"
-            src="https://a.storyblok.com/f/118728/782x793/3c893e1395/zeze-fitting-is-not-passed.png/m/281x281"
+            src="https://a.storyblok.com/f/118728/782x793/3c893e1395/zeze-fitting-is-not-passed.png"
             alt="contoh desain maskot yang tidak proporsional dengan tubuh manusia"
           />
         </div>
@@ -154,8 +150,8 @@ function drawCanvasImage(img) {
           <ul id="instructions" class="fa-ul">
             <li>
               <span class="fa-li">
-                <font-awesome-icon
-                  :icon="['fas', 'check-circle']"
+                <Icon
+                  name="ion-checkmark-circle"
                   aria-hidden="true"
                   class="icon"
                 />
@@ -165,8 +161,8 @@ function drawCanvasImage(img) {
             </li>
             <li>
               <span class="fa-li">
-                <font-awesome-icon
-                  :icon="['fas', 'check-circle']"
+                <Icon
+                  name="ion-checkmark-circle"
                   aria-hidden="true"
                   class="icon"
                 />
@@ -174,15 +170,15 @@ function drawCanvasImage(img) {
               {{ $t("fittingInstruction.upload.useButton") }}
               <span class="font-bold">{{ $t("uploadDesign") }}</span>
               {{
-                $device.isMobile
+                isMobile
                   ? $t("fittingInstruction.upload.below")
                   : $t("fittingInstruction.upload.beside")
               }}
             </li>
             <li>
               <span class="fa-li">
-                <font-awesome-icon
-                  :icon="['fas', 'check-circle']"
+                <Icon
+                  name="ion-checkmark-circle"
                   aria-hidden="true"
                   class="icon"
                 />
@@ -194,8 +190,8 @@ function drawCanvasImage(img) {
             </li>
             <li>
               <span class="fa-li">
-                <font-awesome-icon
-                  :icon="['fas', 'check-circle']"
+                <Icon
+                  name="ion-checkmark-circle"
                   aria-hidden="true"
                   class="icon"
                 />
@@ -219,7 +215,6 @@ function drawCanvasImage(img) {
     @apply bg-gradient-to-t from-indigo-700/20 to-small-title-darken/20;
   }
   #instructions {
-    @apply text-idm-base-100;
     .icon {
       @apply text-small-title/70;
     }
@@ -234,8 +229,6 @@ function drawCanvasImage(img) {
     @apply bg-gradient-to-t from-indigo-600/10 to-small-title/20;
   }
   #instructions {
-    @apply text-idm-base-300;
-
     .icon {
       @apply text-primary/70;
     }
@@ -244,5 +237,22 @@ function drawCanvasImage(img) {
 
 #instructions > li {
   margin-top: 0.5rem;
+}
+
+.fa-ul {
+  list-style-type: none;
+  margin-left: 2.5em;
+  padding-left: 0;
+}
+.fa-ul > li {
+  position: relative;
+}
+
+.fa-li {
+  left: -2em;
+  position: absolute;
+  text-align: center;
+  width: 2em;
+  line-height: inherit;
 }
 </style>

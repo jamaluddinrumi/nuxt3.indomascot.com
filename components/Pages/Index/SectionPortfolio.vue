@@ -1,16 +1,13 @@
 <script setup lang="ts">
-import { ref } from "vue";
-import { useStoryblok } from "@storyblok/vue";
-import $device from "@src/device";
-
+const { isDesktop } = useDevice();
 const { t } = useI18n();
-const content = ref(new Object());
 
-useStoryblok("halaman-depan", { version: "draft" })
-  .then(async (data) => {
-    content.value = data.value.content;
-  })
-  .catch((error) => console.log(error));
+const props = defineProps({
+  content: {
+    type: Object,
+    default: new Object(),
+  },
+});
 </script>
 
 <template>
@@ -19,11 +16,7 @@ useStoryblok("halaman-depan", { version: "draft" })
       <div
         id="bg-blur"
         class="absolute h-10 w-60 blur-lg"
-        :class="[
-          $device.isDesktopOrTablet
-            ? 'h-[40px] w-[240px]'
-            : 'h-[24px] w-[145px]',
-        ]"
+        :class="[isDesktop ? 'h-[40px] w-[240px]' : 'h-[24px] w-[145px]']"
       ></div>
       <h2 id="portfolio-title" class="relative mb-4 lg:mb-12">
         <span

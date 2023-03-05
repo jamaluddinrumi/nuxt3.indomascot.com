@@ -43,6 +43,7 @@ useHead({
           class="btn-shadow btn-gradient btn-primary btn ml-2 rounded-full px-6 pt-1 shadow-inner"
           @click="openMainMenu()"
         >
+          <Icon name="ion-menu-sharp" class="mb-1 mr-0.5 h-5 w-5" />
           <span class="josefin-sans font-bold shadow-inner">MENU</span>
         </button>
       </div>

@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-
 const { t } = useI18n();
 
 const waUrl = import.meta.env.PUBLIC_WA_URL;
@@ -12,13 +11,11 @@ const waUrl = import.meta.env.PUBLIC_WA_URL;
     :aria-label="t('chatUsonWhatsapp')"
     :href="waUrl"
   >
-    <font-awesome-layers class="fa-fw">
-      <font-awesome-icon
-        :icon="['fab', 'whatsapp']"
-        aria-hidden="true"
-        class="mr-0 h-4 w-4 lg:h-5 lg:w-5"
-      />
-    </font-awesome-layers>
+    <Icon
+      name="ion-logo-whatsapp"
+      aria-hidden="true"
+      class="mr-0.5 mb-0.5 h-4 w-4"
+    />
     <span class="ml-0.5 tracking-wide">
       {{ t("whatsAppNo") }}
     </span>

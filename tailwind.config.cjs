@@ -4,7 +4,14 @@ const daisyUi = require("daisyui/src/colors/themes");
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
+  content: [
+    "./components/**/*.{js,vue,ts}",
+    "./layouts/**/*.vue",
+    "./pages/**/*.vue",
+    "./plugins/**/*.{js,ts}",
+    "./nuxt.config.{js,ts}",
+    "./storyblok/**/*.{vue,js,ts}",
+  ],
   darkMode: ["class", '[data-theme="dark"]'], // or 'media' or 'class'
   // darkMode: ['[data-theme="dark"]'],
   // darkMode: "media",
@@ -128,7 +135,7 @@ module.exports = {
           "base-100": daisyUi["[data-theme=dark]"]["base-100"],
           "base-200": daisyUi["[data-theme=dark]"]["base-200"],
           "base-300": daisyUi["[data-theme=dark]"]["base-300"],
-          "base-content": "#FEFEFE",
+          "base-content": "hsl(246,6%,95%)",
           info: daisyUi["[data-theme=dark]"]["info"],
           "info-content": daisyUi["[data-theme=dark]"]["info-content"],
           success: daisyUi["[data-theme=dark]"]["success"],
@@ -176,7 +183,7 @@ module.exports = {
           "base-100": daisyUi["[data-theme=light]"]["base-100"],
           "base-200": daisyUi["[data-theme=light]"]["base-200"],
           "base-300": daisyUi["[data-theme=light]"]["base-300"],
-          "base-content": "#6C6B7B",
+          "base-content": "hsl(246,8%,35%)",
           info: daisyUi["[data-theme=light]"]["info"],
           "info-content": daisyUi["[data-theme=light]"]["info-content"],
           success: daisyUi["[data-theme=light]"]["success"],

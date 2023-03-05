@@ -7,7 +7,7 @@ specifiers:
   '@nuxt/eslint-config': ^0.1.1
   '@nuxt/image-edge': 1.0.0-27954023.4cee565
   '@nuxtjs/device': ^3.1.0
-  '@nuxtjs/html-validator': ^1.2.3
+  '@nuxtjs/html-validator': ^1.2.4
   '@nuxtjs/i18n': 8.0.0-beta.10
   '@nuxtjs/robots': ^3.0.0
   '@nuxtjs/tailwindcss': ^6.4.1
@@ -53,7 +53,7 @@ devDependencies:
   '@nuxt/eslint-config': 0.1.1_eslint@8.35.0
   '@nuxt/image-edge': 1.0.0-27954023.4cee565
   '@nuxtjs/device': 3.1.0
-  '@nuxtjs/html-validator': 1.2.3
+  '@nuxtjs/html-validator': 1.2.4
   '@nuxtjs/i18n': 8.0.0-beta.10
   '@nuxtjs/robots': 3.0.0
   '@nuxtjs/tailwindcss': 6.4.1
@@ -1852,12 +1852,12 @@ packages:
       - supports-color
     dev: true
 
-  /@nuxtjs/html-validator/1.2.3:
-    resolution: {integrity: sha512-SDoqoi3QqcaoFl8yW5Kdqon5rbAgUWZu1cDUEZR85WBl3T2BddXJazrkIg7gq0r2G/hrxSVDHUtaVYvKhq+ILw==}
+  /@nuxtjs/html-validator/1.2.4:
+    resolution: {integrity: sha512-IKy/+lR516ls7gXbXsCzLKdIhzyjxo5b7//6yZ8hNIvaLljb3yyCTiEM139B7RchIvIyBpf0GJ5GKWn2rPmRhw==}
     dependencies:
       '@nuxt/kit': 3.2.3
       chalk: 5.2.0
-      html-validate: 7.10.1
+      html-validate: 7.13.2
       pathe: 1.1.0
       prettier: 2.8.4
       std-env: 3.3.2
@@ -4930,8 +4930,8 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
-  /html-validate/7.10.1:
-    resolution: {integrity: sha512-2MjthTcMfqAZ8V1YyXshINGsdmPKc3RW9IKJ3kgfjXq59BuvSVM+vBhfOu0dJvlpRVH117vZ5JImYNsMfca3nA==}
+  /html-validate/7.13.2:
+    resolution: {integrity: sha512-ZUinzQ/a9zC0vP3uoCAKhHWogkCCK8KXcl5gMd+d8esuCl+p5d8P4zL/qSuvhc+zJ3qiIFyDaZ/wyUE1A78vNA==}
     engines: {node: '>= 14.0'}
     hasBin: true
     peerDependencies:
@@ -5787,8 +5787,8 @@ packages:
       yallist: 4.0.0
     dev: true
 
-  /lru-cache/7.18.1:
-    resolution: {integrity: sha512-8/HcIENyQnfUTCDizRu9rrDyG6XG/21M4X7/YEGZeD76ZJilFPAUVb/2zysFf7VVO1LEjCDFyHp8pMMvozIrvg==}
+  /lru-cache/7.18.3:
+    resolution: {integrity: sha512-jumlc0BIUrS3qJGgIkWZsyfAM7NCWiBcCDhnd+3NNM5KbBmLTgHVfWBcg6W+rLUsIpzpERPsvwUP7CckAQSOoA==}
     engines: {node: '>=12'}
     dev: true
 
@@ -8789,7 +8789,7 @@ packages:
       h3: 1.5.0
       ioredis: 5.3.1
       listhen: 1.0.3
-      lru-cache: 7.18.1
+      lru-cache: 7.18.3
       mri: 1.2.0
       node-fetch-native: 1.0.2
       ofetch: 1.0.1

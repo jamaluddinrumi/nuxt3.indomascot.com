@@ -15,7 +15,7 @@ const { t } = useI18n();
         </span>
       </h1>
       <h2 class="mb-0 px-4 text-center lg:px-0">
-        <span class="description font-sans leading-loose text-idm-base-100">
+        <span class="description font-sans leading-loose">
           {{ t("weProduce") }}
         </span>
       </h2>

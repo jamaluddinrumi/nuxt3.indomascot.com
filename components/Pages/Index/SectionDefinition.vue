@@ -1,6 +1,5 @@
 <script lang="ts" setup>
-import { onMounted, nextTick, ref } from "vue";
-import menus from "@src/menu";
+const menus = useMenus();
 
 const portfolioLink = ref(menus.find((item) => item.text === "portfolio").href);
 
@@ -42,7 +41,7 @@ onMounted(() => {
       <div
         id="video-bg-blur"
         class="absolute overflow-hidden bg-small-title/30 blur-3xl lg:block lg:h-[847px] lg:w-[480px]"
-      ></div>
+      />
       <video
         id="inilahmaskot"
         preload="true"
@@ -58,13 +57,13 @@ onMounted(() => {
         <a
           href="https://a.storyblok.com/f/118728/x/432b9373b9/roti-kapiten-show-off.mp4"
           target="_blank"
-          >Download Video</a
-        >
+          >Download Video
+        </a>
       </video>
       <div class="mx-auto mt-2">
-        <span class="text-light text-xs italic text-opacity-50"
-          >{{ t("designBy") }} Roti Kapiten</span
-        >
+        <span class="text-light text-xs italic text-opacity-50">
+          {{ t("designBy") }} Roti Kapiten
+        </span>
       </div>
     </div>
 
@@ -75,7 +74,29 @@ onMounted(() => {
         >
           {{ t(paragraph.title) }}
         </h2>
-        <template v-if="paragraph.answer === 'youCanSeeTheSamples'">
+        <template v-if="paragraph.answer === 'accordingToWikipedia'">
+          <i18n-t
+            keypath="accordingToWikipedia"
+            tag="p"
+            class="answer mb-4 text-left leading-loose lg:mb-0"
+          >
+            <template #brandAwareness>
+              <span class="italic">{{ $t("brandAwareness") }}</span>
+            </template>
+          </i18n-t>
+        </template>
+        <template v-else-if="paragraph.answer === 'itsJustTheSame'">
+          <i18n-t
+            keypath="itsJustTheSame"
+            tag="p"
+            class="answer mb-4 text-left leading-loose lg:mb-0"
+          >
+            <template #allSize>
+              <span class="italic">{{ $t("allSize") }}</span>
+            </template>
+          </i18n-t>
+        </template>
+        <template v-else-if="paragraph.answer === 'youCanSeeTheSamples'">
           <i18n-t
             keypath="youCanSeeTheSamples"
             tag="p"
@@ -106,9 +127,6 @@ onMounted(() => {
   #definisi {
     border-color: rgba(255, 255, 255, 0.05);
     background-color: rgba(255, 255, 255, 0.1);
-    .answer {
-      @apply text-idm-base-100;
-    }
   }
 }
 
@@ -119,9 +137,6 @@ onMounted(() => {
   #definisi {
     border-color: rgba(82, 41, 122, 0.05);
     background-color: rgba(82, 41, 122, 0.1);
-    .answer {
-      @apply text-idm-base-300;
-    }
   }
 }
 </style>

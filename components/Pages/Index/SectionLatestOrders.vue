@@ -5,27 +5,24 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/effect-coverflow";
-import IconOnFinal from "@components/Icon/OnFinal.vue";
-import IconOnProgress from "@components/Icon/OnProgress.vue";
-import { ref, onMounted } from "vue";
-import { useStoryblok } from "@storyblok/vue";
-import { Image } from "@unpic/vue";
-import $device from "@src/device";
-import Human from "@components/Icon/Human.vue";
-import { menus } from "@src/states";
 
-const { t } = useI18n();
+const props = defineProps({
+  photos: {
+    type: Array,
+    default: new Array(),
+  },
+});
 
-const portfolioLink = ref(
-  menus.get().find((item) => item.text === "portfolio")
-);
+const { isDesktop } = useDevice();
+
+const menus = useMenus();
+
+const { t, locale } = useI18n();
+
+const portfolioLink = ref(menus.find((item) => item.text === "portfolio"));
 
 const portfolioHref = ref(portfolioLink.value.href);
 const portfolioText = ref(portfolioLink.value.text);
-
-const props = defineProps<{
-  modelValue?: boolean;
-}>();
 
 const onSwiper = (swiper) => {
   console.log(swiper);
@@ -33,18 +30,6 @@ const onSwiper = (swiper) => {
 const onSlideChange = () => {
   console.log("slide change");
 };
-
-const content = ref(new Object());
-const photos = ref(new Array());
-
-useStoryblok("badut-maskot", { version: "draft" })
-  .then(async (data) => {
-    content.value = data.value.content;
-    photos.value = await content.value.body[0].columns;
-    photos.value = photos.value.reverse();
-    photos.value.length = 10;
-  })
-  .catch((error) => console.log(error));
 
 const dateOptions = ref({
   year: "numeric",
@@ -56,13 +41,11 @@ const modules = ref([Navigation, Pagination, EffectCoverflow]);
 </script>
 
 <template>
-  <div class="relative mx-auto mt-12 lg:mt-20 mb-0 w-fit lg:mb-8">
+  <div class="relative mx-auto mt-12 mb-0 w-fit lg:mt-20 lg:mb-8">
     <div
       id="bg-blur"
       class="absolute blur-lg"
-      :class="[
-        $device.isDesktopOrTablet ? 'h-[40px] w-[190px]' : 'h-[24px] w-[125px]',
-      ]"
+      :class="[isDesktop ? 'h-[40px] w-[190px]' : 'h-[24px] w-[125px]']"
     ></div>
     <h2 id="portfolio-title" class="relative mb-0">
       <span
@@ -94,7 +77,7 @@ const modules = ref([Navigation, Pagination, EffectCoverflow]);
       slideShadows: false,
     }"
     :mousewheel="{ invert: false, forceToAxis: true }"
-    :initial-slide="$device.isDesktopOrTablet ? 1 : 0"
+    :initial-slide="isDesktop ? 1 : 0"
     class="min-h-min !py-4 pb-16"
   >
     <swiper-slide
@@ -128,11 +111,11 @@ const modules = ref([Navigation, Pagination, EffectCoverflow]);
         data-featherlight="image"
         :alt="photo.caption"
       >
-        <Image
-          cdn="storyblok"
+        <NuxtImg
+          provider="storyblok"
           width="371"
           height="371"
-          :src="`${photo.photo}/m/371x371`"
+          :src="photo.photo"
           :alt="`${photo.caption} ${photo.caption !== '' ? '-' : ''}
           ${new Date(photo.uploaded_date).toLocaleDateString(
             $i18n.locale,
@@ -152,20 +135,21 @@ const modules = ref([Navigation, Pagination, EffectCoverflow]);
   </swiper>
   <div class="mb-8 mt-4 grid grid-cols-1 lg:mt-12">
     <div class="relative flex justify-center">
-      <a
+      <NuxtLink
         class="bg-gradient flex cursor-pointer justify-center rounded-full bg-primary px-6 py-4 uppercase tracking-wide shadow-2xl"
         :href="portfolioHref"
         :aria-label="t(portfolioText)"
       >
-        <div class="fa-fw fa-layers">
-          <Human />
-        </div>
+        <Icon
+          name="ion-accessibility"
+          class="mt-px mr-0.5 h-3 w-3 fill-neutral-content/90 text-neutral-content/90 lg:mt-0.5 lg:h-5 lg:w-5"
+        />
         <span
-          class="ml-0 mr-0.5 text-xs font-bold uppercase leading-normal lg:ml-0.5 lg:text-base"
+          class="ml-0 mr-0.5 text-xs font-bold uppercase leading-normal text-neutral-content/90 lg:ml-0.5 lg:text-base"
         >
           {{ $t("showMore") }}
         </span>
-      </a>
+      </NuxtLink>
       <span
         class="absolute left-[calc(50%_+_5.5rem)] top-0 -mt-1 -mr-1 flex h-5 w-5"
         :class="[

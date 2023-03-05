@@ -43,8 +43,10 @@ const title = ref("");
         :placeholder="[100, 100, 10]"
       />
     </a>
-    <figcaption class="mb-2 hidden h-7 text-center text-sm lg:block">
-      {{ blok.caption }}
+    <figcaption class="mb-2 hidden h-7 text-center lg:block">
+      <span class="text-sm font-semibold">
+        {{ blok.caption }}
+      </span>
     </figcaption>
   </figure>
 </template>
@@ -52,5 +54,9 @@ const title = ref("");
 <style scoped>
 figure.portfolio-item > a img {
   border-radius: 4px;
+}
+
+figcaption > span {
+  color: hsl(270, 60%, 52%);
 }
 </style>
