@@ -27,5 +27,5 @@ watchEffect(() => {
 </script>
 
 <template>
-  <div></div>
+  <PagesIndexSectionHero />
 </template>

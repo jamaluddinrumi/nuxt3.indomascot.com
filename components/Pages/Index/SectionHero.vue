@@ -1,23 +1,5 @@
 <script setup lang="ts">
-import $device from "@src/device";
-import { Image } from "@unpic/vue";
-
-import device from "@src/device";
-import { useHead } from "@unhead/vue";
-
-if (device.isDesktopOrTablet) {
-  useHead({
-    link: [
-      {
-        rel: "preload",
-        fetchpriority: "high",
-        as: "image",
-        href: "/tim-produksi-on-desktop.svg",
-        type: "image/svg+xml",
-      },
-    ],
-  });
-}
+const { isDesktop, isMobile } = useDevice();
 
 const { t } = useI18n();
 </script>
@@ -33,7 +15,7 @@ const { t } = useI18n();
         </span>
       </h1>
       <h2 class="mb-0 px-4 text-center lg:px-0">
-        <span class="description font-sans leading-loose">
+        <span class="description font-sans leading-loose text-idm-base-100">
           {{ t("weProduce") }}
         </span>
       </h2>
@@ -48,26 +30,25 @@ const { t } = useI18n();
           id="bg-blur-tim-produksi"
           class="absolute h-[586px] w-[640px] rounded bg-[url(/tim-produksi-on-desktop.svg)] blur-3xl"
         ></div>
-        <Image
-          cdn="storyblok"
-          src="https://a.storyblok.com/f/118728/480x456/70a7b547ec/tim-produksi-on-desktop.png/m/"
+        <NuxtImg
+          provider="storyblok"
+          src="https://a.storyblok.com/f/118728/480x456/70a7b547ec/tim-produksi-on-desktop.png"
           class="absolute w-fit max-w-fit"
           width="480"
           height="456"
-          :priority="$device.isDesktop ? true : false"
-          :preload="$device.isDesktop"
+          :priority="isDesktop ? true : false"
+          :preload="isDesktop"
           :alt="t('productionTeam')"
         />
       </div>
-      <Image
-        cdn="storyblok"
+      <NuxtImg
+        provider="storyblok"
         width="414"
         height="414"
-        src="https://a.storyblok.com/f/118728/414x414/b9bdd0ccf5/tim-produksi-on-mobile.jpg/m/"
+        src="https://a.storyblok.com/f/118728/414x414/b9bdd0ccf5/tim-produksi-on-mobile.jpg"
         class="block bg-auto lg:hidden"
-        :priority="$device.isMobile ? true : false"
+        :priority="isMobile ? true : false"
         :alt="t('productionTeam')"
-        background="auto"
       />
     </div>
   </section>
@@ -78,17 +59,11 @@ const { t } = useI18n();
   #bg-blur-tim-produksi {
     @apply opacity-80;
   }
-  .description {
-    @apply text-idm-base-300;
-  }
 }
 
 [data-theme="dark"] {
   #bg-blur-tim-produksi {
     @apply opacity-20;
-  }
-  .description {
-    @apply text-idm-base-200;
   }
 }
 </style>
