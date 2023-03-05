@@ -28,20 +28,15 @@ onMounted(() => {
 
   document.documentElement.setAttribute("data-theme", colorScheme.value);
 });
+
+const schema = getSchema();
 </script>
 
 <template>
   <SchemaOrgLocalBusiness
     name="INDOMASCOT"
     image="/indomascot_logo_gradient.svg"
-    :address="{
-      streetAddress:
-        'Jl. Cukang Kawung Gang Bojong Mekar No. 53 RT 01 RW 15 Cibeunying Kaler, Kec. Cimenyan',
-      addressLocality: 'Bandung',
-      addressRegion: 'BDO',
-      postalCode: '40191',
-      addressCountry: 'ID',
-    }"
+    v-bind="schema"
   />
   <SchemaOrgWebSite name="INDOMASCOT" />
   <SchemaOrgWebPage />
