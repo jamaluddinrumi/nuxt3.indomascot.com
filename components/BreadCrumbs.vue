@@ -5,7 +5,7 @@ const route = useRoute();
 
 const localePath = useLocalePath();
 
-const { t, locale } = useI18n();
+const { t, locale } = useI18n({ useScope: "global" });
 
 const isHomepage = ref(false);
 

@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { ref } from "vue";
 
-const { t } = useI18n();
+const { t } = useI18n({ useScope: "global" });
 
 const clients = ref({
   client1: {

@@ -3,7 +3,7 @@ const localePath = useLocalePath();
 
 const menus = useMenus();
 
-const { t, locale } = useI18n();
+const { t, locale } = useI18n({ useScope: "global" });
 </script>
 
 <template>

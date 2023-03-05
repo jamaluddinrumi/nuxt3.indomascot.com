@@ -6,7 +6,7 @@ const props = defineProps({
   },
 });
 
-const { t } = useI18n();
+const { t } = useI18n({ useScope: "global" });
 
 const classHide = ref("translate-y-20 lg:translate-y-[626px] shadow-none");
 const classShow = ref("translate-x-0 shadow-xl");

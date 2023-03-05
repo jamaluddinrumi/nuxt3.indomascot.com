@@ -2,7 +2,7 @@
 import Moveable from "vue3-moveable";
 
 const { isDesktop, isMobile } = useDevice();
-const { t } = useI18n();
+const { t } = useI18n({ useScope: "global" });
 
 const target = ref(null);
 

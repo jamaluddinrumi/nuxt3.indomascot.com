@@ -3,7 +3,9 @@ const menus = useMenus();
 
 const portfolioLink = ref(menus.find((item) => item.text === "portfolio").href);
 
-const { t } = useI18n();
+const localePath = useLocalePath();
+
+const { t } = useI18n({ useScope: "global" });
 
 const paragraphs = ref([
   {
@@ -76,6 +78,7 @@ onMounted(() => {
         </h2>
         <template v-if="paragraph.answer === 'accordingToWikipedia'">
           <i18n-t
+            scope="global"
             keypath="accordingToWikipedia"
             tag="p"
             class="answer mb-4 text-left leading-loose lg:mb-0"
@@ -87,6 +90,7 @@ onMounted(() => {
         </template>
         <template v-else-if="paragraph.answer === 'itsJustTheSame'">
           <i18n-t
+            scope="global"
             keypath="itsJustTheSame"
             tag="p"
             class="answer mb-4 text-left leading-loose lg:mb-0"
@@ -98,15 +102,16 @@ onMounted(() => {
         </template>
         <template v-else-if="paragraph.answer === 'youCanSeeTheSamples'">
           <i18n-t
+            scope="global"
             keypath="youCanSeeTheSamples"
             tag="p"
             class="answer mb-4 text-left leading-loose lg:mb-0"
           >
-            <a
+            <NuxtLink
               class="link-accent link hover:text-accent"
-              :href="portfolioLink"
-              >{{ $t("portfolioPage") }}</a
-            >
+              :href="localePath(portfolioLink)"
+              >{{ $t("portfolioPage") }}
+            </NuxtLink>
           </i18n-t>
         </template>
         <template v-else>

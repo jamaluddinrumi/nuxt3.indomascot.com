@@ -3,7 +3,7 @@ import { ref } from "vue";
 
 const localeChanger = ref("");
 
-const { t, locale } = useI18n();
+const { t, locale } = useI18n({ useScope: "global" });
 </script>
 
 <template>

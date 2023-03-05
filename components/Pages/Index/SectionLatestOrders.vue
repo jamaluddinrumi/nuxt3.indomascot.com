@@ -17,7 +17,7 @@ const { isDesktop } = useDevice();
 
 const menus = useMenus();
 
-const { t, locale } = useI18n();
+const { t, locale } = useI18n({ useScope: "global" });
 
 const portfolioLink = ref(menus.find((item) => item.text === "portfolio"));
 

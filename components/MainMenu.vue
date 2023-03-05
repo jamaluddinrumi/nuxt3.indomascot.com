@@ -27,7 +27,7 @@ const getRouteBaseName = useRouteBaseName();
 
 const localeRoute = useLocaleRoute();
 
-const { t, availableLocales, locale } = useI18n();
+const { t, availableLocales, locale } = useI18n({ useScope: "global" });
 
 const menuHalaman = ref(null);
 

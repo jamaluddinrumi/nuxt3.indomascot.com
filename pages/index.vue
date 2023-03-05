@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const route = useRoute();
 
-const { locale } = useI18n();
+const { locale } = useI18n({ useScope: "global" });
 
 const storyblokStories = useStories();
 

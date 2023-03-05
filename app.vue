@@ -14,7 +14,7 @@ import "@fontsource/josefin-sans/700.css";
 import { useStorage } from "@vueuse/core";
 import { themeChange } from "theme-change";
 
-const { locale } = useI18n();
+const { locale } = useI18n({ useScope: "global" });
 
 watchEffect(() => {
   useHead({

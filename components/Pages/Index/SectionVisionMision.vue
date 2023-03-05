@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { startCase } from "lodash-es";
 
-const { t } = useI18n();
+const { t } = useI18n({ useScope: "global" });
 </script>
 
 <template>

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const { isDesktop } = useDevice();
-const { t } = useI18n();
+const { t } = useI18n({ useScope: "global" });
 
 const props = defineProps({
   content: {

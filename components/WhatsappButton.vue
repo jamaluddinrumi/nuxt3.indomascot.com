@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-const { t } = useI18n();
+const { t } = useI18n({ useScope: "global" });
 
 const waUrl = import.meta.env.PUBLIC_WA_URL;
 </script>
