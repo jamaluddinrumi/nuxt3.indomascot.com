@@ -11,14 +11,18 @@ const { data } = await storyblokApi.get(`cdn/stories`, {
   version: "draft",
 });
 const stories = data.stories as Array<object>;
-const storyPath =
-  storyblokStories[locale.value][UsePrependTrailingSlash(route.fullPath)];
+
+const path = route.hash ? route.path : route.fullPath;
+const storyPath = storyblokStories[locale.value][UsePrependTrailingSlash(path)];
 const { content } = stories.find((story) => story.full_slug === storyPath);
 const meta = content.meta;
 
-useHead({
-  title: meta.title,
-  meta: [{ name: "description", content: meta.description }],
+watchEffect(() => {
+  useSeoMeta({
+    title: meta.title,
+    description: meta.description,
+    ogImage: () => meta.og_image,
+  });
 });
 </script>
 

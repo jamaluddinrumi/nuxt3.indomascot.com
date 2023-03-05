@@ -18,9 +18,10 @@ const { content } = stories.find((story) => story.full_slug === storyPath);
 const meta = content.meta;
 
 watchEffect(() => {
-  useHead({
+  useSeoMeta({
     title: meta.title,
-    meta: [{ name: "description", content: meta.description }],
+    description: meta.description,
+    ogImage: () => meta.og_image,
   });
 });
 </script>
