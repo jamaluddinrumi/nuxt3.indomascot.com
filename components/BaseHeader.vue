@@ -33,7 +33,7 @@ useHead({
       class="supports-backdrop-blur:bg-white/60 navbar h-[72px] px-5 backdrop-blur transition will-change-[filter]"
     >
       <div class="flex-1">
-        <NuxtLink :href="localePath('/')">
+        <NuxtLink :href="UsePrependTrailingSlash(localePath('/'))">
           <IconIndomascotLogo />
         </NuxtLink>
       </div>

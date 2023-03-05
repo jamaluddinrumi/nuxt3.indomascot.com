@@ -88,7 +88,7 @@ loadPaths();
     <SchemaOrgBreadcrumb as="ul" :item-list-element="parts">
       <li v-for="(part, index) in parts" :key="part.href">
         <NuxtLink
-          :href="part.href"
+          :href="UsePrependTrailingSlash(part.href)"
           :alt="part.text"
           :aria-label="part.text"
           :aria-current="index === parts.length - 1 ? 'page' : false"

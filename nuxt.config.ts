@@ -2,9 +2,9 @@
 export default defineNuxtConfig({
   runtimeConfig: {
     indexable: true,
+    siteUrl: process.env.PUBLIC_BASE_URL,
     public: {
       trailingSlash: true,
-      siteUrl: process.env.PUBLIC_BASE_URL,
       siteName: "INDOMASCOT",
       siteDescription:
         "INDOMASCOT melayani pembuatan kostum badut maskot untuk branding produk atau instansi anda dengan desain dari anda sendiri. (WA 0822-2155-6633)",
