@@ -1,5 +1,6 @@
 <script setup>
 import "isomorphic-fetch"; // https://github.com/storyblok/storyblok-js-client#fetch-use-polyfill-if-needed---version-5
+import "@fontsource/bangers/400.css";
 import "@fontsource/inter/300.css";
 import "@fontsource/inter/400.css";
 import "@fontsource/inter/600.css";
