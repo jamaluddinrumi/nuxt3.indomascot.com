@@ -17,23 +17,32 @@ const { t, locale } = useI18n();
           <NuxtLink
             class="link uppercase no-underline"
             :href="
-              UsePrependTrailingSlash(
-                localePath(
-                  {
-                    path: localePath(menu.href),
-                    hash: menu.href.includes('#')
-                      ? `#${menu.href.split('#').pop()}`
-                      : undefined,
-                  },
-                  locale
-                )
-              )
+              menu.href.includes('#')
+                ? localePath(
+                    {
+                      path: localePath(menu.href),
+                      hash: menu.href.includes('#')
+                        ? `#${menu.href.split('#').pop()}`
+                        : undefined,
+                    },
+                    locale
+                  )
+                : UsePrependTrailingSlash(
+                    localePath(
+                      {
+                        path: localePath(menu.href),
+                        hash: menu.href.includes('#')
+                          ? `#${menu.href.split('#').pop()}`
+                          : undefined,
+                      },
+                      locale
+                    )
+                  )
             "
             :aria-label="t(menu.text)"
           >
             <template v-if="menu.text === 'homepage'">
               <Icon
-                id="nav-text"
                 class="text-idm-base-content mb-2 lg:mr-1"
                 name="ion-home"
                 aria-hidden="true"

@@ -108,17 +108,27 @@ onMounted(() => {
                   (route.path || UsePrependTrailingSlash(route.path)),
               }"
               :href="
-                UsePrependTrailingSlash(
-                  localePath(
-                    {
-                      path: localePath(menu.href),
-                      hash: menu.href.includes('#')
-                        ? `#${menu.href.split('#').pop()}`
-                        : undefined,
-                    },
-                    locale
-                  )
-                )
+                menu.href.includes('#')
+                  ? localePath(
+                      {
+                        path: localePath(menu.href),
+                        hash: menu.href.includes('#')
+                          ? `#${menu.href.split('#').pop()}`
+                          : undefined,
+                      },
+                      locale
+                    )
+                  : UsePrependTrailingSlash(
+                      localePath(
+                        {
+                          path: localePath(menu.href),
+                          hash: menu.href.includes('#')
+                            ? `#${menu.href.split('#').pop()}`
+                            : undefined,
+                        },
+                        locale
+                      )
+                    )
               "
               :aria-label="t(menu.text)"
               @click="mainMenu = false"
